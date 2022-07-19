@@ -1,0 +1,23 @@
+{
+  "name": "express-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "ishla": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Norqulov Ozodbek",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "bootstrap": "^5.1.3",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.17.2",
+    "node-telegram-bot-api": "^0.58.0",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  }
+}

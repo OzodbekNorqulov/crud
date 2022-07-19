@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertisements</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <style>
+        .anns {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 1rem;
+      }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container-fluid">
+          <div class="anns">
+            <% locals.ads.forEach(i => { %>
+              <div class="card col-sm-12 col-xs-12" style="width: 18rem">
+                <img src="<%= i.imgUrl %> class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title"><%= i.title %></h5>
+                  <p class="card-text"><%= i.description %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><%= i.model %></li>
+                  <li class="list-group-item"><%= i.price + "$" %></li>
+                  <li class="list-group-item"><%= i.case %></li>
+                </ul>
+                <h6 style="margin: 7px 5px"><%= "seller:" + " " + i.userName%></h5>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+              <% })
+              %>
+          </div>
+        </div>
+      </section>
+</body>
+</html>

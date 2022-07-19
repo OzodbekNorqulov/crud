@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+body {
+    background-color: #9b59b6;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.342);
+    overflow: hidden;
+    width: 500px;
+    max-width: 100%;
+}
+
+.header {
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #f7f7f7;
+    padding: 20px 40px;
+}
+
+.header h2 {
+    margin: 0;
+}
+
+.form {
+    padding: 30px 40px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+.form-control i {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+
+.form-control small {
+    color: #f74c3c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.form button {
+    background-color: #8e44ad;
+    border: 2px solid #8e44ad;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.form-control input:focus {
+    outline: none;
+    border-color: #777;
+}
+
+.form-control.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+    color: #ec3f2c;
+    visibility: visible;
+}
+
+
+.form-control.success input {
+    border-color: #2ecc71;
+}
+
+.form-control.error input {
+    border-color: #ec3f2c;
+}
+
+.social-panel-container {
+    position: fixed;
+    right: 0;
+    bottom: 80px;
+    transform: translateX(100%);
+    transition: transform .4s ease-in-out;
+}
+
+.social-panel-container.visible {
+    transform: translateX(-10px);
+}
+
+.social-panel {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 16px 31px -17px rgba(0, 31, 97, 0.6);
+    border: 5px solid #001f61;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 169px;
+    width: 370px;
+    max-width: calc(100% - 10px);
+}
+
+.social-panel button.close-btn {
+    border: 0;
+    color: #97a5ce;
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.social-panel button.close-btn:focus {
+    outline: none;
+}
+
+.social-panel p {
+    background-color: #001f61;
+    color: #fff;
+    border-radius: 0 0 10px 10px;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 2px 17px 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 235px;
+}
+
+.social-panel p i {
+    margin: 0 5px;
+}
+
+.social-panel a {
+    color: #ff7500;
+    text-decoration: none;
+
+}
+
+.social-panel h4 {
+    margin: 20px 0;
+    color: #97a5ce;
+    font-size: 14px;
+}
+
+.social-panel ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-panel ul li {
+    margin: 0 10px;
+}
+
+.social-panel ul li a {
+    padding: 15px;
+    border: 1px solid #f7f7f7;
+    border-radius: 50%;
+    color: #001f61;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    text-decoration: none;
+    transition: .4s ease;
+}
+
+.social-panel ul li a:hover {
+    border-color: coral;
+    box-shadow: 0 9px 12px -9px coral;
+}
+
+.floating-btn {
+    border: 2px solid darkblue;
+    border-radius: 26.5px;
+    border-color: darkblue;
+    background-color: darkblue;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 12px 20px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    transition: .4s ease;
+}
+
+.floating-btn:hover {
+    background-color: #fff;
+    color: darkblue;
+    outline: none;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Create Account</h2>
+        </div>
+        <form class="form" id="form" method="post" action="http://localhost:5000/form">
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" name="userName" placeholder="user name" id="username">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" name="userEmail" placeholder="Email" id="email">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="flex">
+                <div class="form-control">
+                    <label for="password">Password</label>
+                    <input type="password" type="text" name="userPassword" placeholder="password" id="password">
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="form-control">
+                    <label for="password">Repeat Password</label>
+                    <input type="password" type="text" name="repeatPassword" placeholder="password" id="password">
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+            </div>
+            <!-- <div class="form-control">
+                <label for="password2">Repeat password</label>
+                <input type="password" name="" placeholder="repeat password" id="password2">
+                <i class="far fa-eye"></i>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div> -->
+            
+            <button type="submit">Submit</button>
+            <button><a href="/login">Login with email</a></button>
+            <h3 style="margin: 8px auto; width: 60%;"><%= locals.check %></h3>
+
+
+        </form>
+    </div>
+
+    <!-- social panel HTML -->
+
+    <div class="social-panel-container">
+        <div class="social-panel">
+            <p>Follow me <i class="fa fa-heart"></i></p>
+            <button class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <h4>GET IN TOUCH ON</h4>
+            <ul>
+                <li><a href="#" target="_blank">
+                    <a class="move" href="/login"></a>
+                </a></li>
+                <li><a href="#" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a></li>
+                <li><a href="#" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a></li>
+                <li><a href="#" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a></li>
+                <li><a href="#" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+
+    <button class="floating-btn">
+        Get in Touch
+    </button>
+    <script>
+        let btn = document.querySelector("button[type='submit']")
+        btn.addEventListener("click", () => {
+            document.querySelector(".move").click()
+        })
+    </script>
+</body>
+</html>
